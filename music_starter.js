@@ -1,4 +1,9 @@
 
+//ai to make the heart have going up and down  
+let heartTime = 0;
+const amplitude = 60; // Pixels
+const frequency = 0.004; // Controls speed
+const initialY = 0; // Starting Y position
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -6,6 +11,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   background(255);
   sandBackDrop(0);
   sky (0);
+  heart(0);
+  heart2(0);
   ocean (0);
   waves (0);
   
@@ -111,7 +118,96 @@ function bird (birdX, birdY) {
 }
   }
 
+  function heart () {
+    //ai
+    let HeartUpDown = initialY + amplitude * Math.cos(heartTime * frequency);
+    stroke(0)
+    fill (255,82,82)
+  let HeartSize = map (bass, 0, 100, 0, 20)
 
+  //heart lobes
+  //left
+  ellipse(189, 250+HeartUpDown, 80+HeartSize, 85+HeartSize)
+  //right
+  ellipse(260, 251+HeartUpDown, 80+HeartSize, 85+HeartSize)
+   
+
+
+  let triSize =  1 + HeartSize / 70;
+  let triHight = 2 + HeartSize/2
+  
+  //ai made part with x, y, s, and c
+  // original triangle coordinates
+  let x1 = 165, y1 = 280;
+  let x2 = 285, y2 = 280;
+  let x3 = 229, y3 = 330;
+  
+  //ai made 
+  // find center of the triangle
+  let cx = (x1 + x2 + x3) / 3;
+  let cy = (y1 + y2 + y3) / 3;
+
+  //ai made 
+  // scale each point from the center
+  let sx1 = cx + (x1 - cx) * triSize;
+  let sy1 = cy + (y1 - cy) * triSize;
+  let sx2 = cx + (x2 - cx) * triSize;
+  let sy2 = cy + (y2 - cy) * triSize;
+  let sx3 = cx + (x3 - cx) * triSize;
+  let sy3 = cy + (y3 - cy) * triSize;
+
+  // draw the triangle; ai made with x, y, s, and c; edited with the Heart and Tri things
+  triangle(sx1, sy1+HeartUpDown+triHight, sx2, sy2+HeartUpDown+triHight, sx3, sy3+HeartUpDown+triHight);
+  
+  noStroke(0)
+  //middle
+  circle(225, 280+HeartUpDown, 40+HeartSize);
+
+  heartTime++
+ }
+
+ function heart2 () {
+    //ai
+    let HeartUpDown = initialY + amplitude * Math.cos(heartTime * frequency);
+    fill 	(199,0,0)
+  let HeartSize = map (bass, 0, 100, 0, 15)
+
+// left lobe
+ellipse(207, 265 + HeartUpDown, 45 + HeartSize, 47 + HeartSize);
+// right lobe
+ellipse(242, 266 + HeartUpDown, 45 + HeartSize, 47 + HeartSize);
+
+// triangle scale
+let triSize = 1 + HeartSize / 140;
+let triHight = 1 + HeartSize / 4;
+
+// original triangle coordinates (halved around same area)
+let x1 = 195, y1 = 285;
+let x2 = 255, y2 = 285;
+let x3 = 227, y3 = 305;
+
+// find center of the triangle
+let cx = (x1 + x2 + x3) / 3;
+let cy = (y1 + y2 + y3) / 3;
+
+// scale each point from the center
+let sx1 = cx + (x1 - cx) * triSize;
+let sy1 = cy + (y1 - cy) * triSize;
+let sx2 = cx + (x2 - cx) * triSize;
+let sy2 = cy + (y2 - cy) * triSize;
+let sx3 = cx + (x3 - cx) * triSize;
+let sy3 = cy + (y3 - cy) * triSize;
+
+// draw the triangle
+triangle(
+  sx1, sy1 + HeartUpDown + triHight,
+  sx2, sy2 + HeartUpDown + triHight,
+  sx3, sy3 + HeartUpDown + triHight
+);
+// middle circle
+circle(225, 280 + HeartUpDown, 20 + HeartSize);
+  heartTime++
+ }
 }
 function sandBackDrop () {
 noStroke();
@@ -149,3 +245,4 @@ beginShape();
   vertex (0,450);//bottom left
 endShape(CLOSE);
 }
+
