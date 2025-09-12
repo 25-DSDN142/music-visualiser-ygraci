@@ -19,7 +19,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   
 
  function waves(){
-  let evenWaves = map (other, 0, 100, 0, 20);
+  let evenWaves = map (drum, 0, 100, 0, 20);
   let oldWaves = map (bass, 0, 100, 0, 70);
     fill (41,164,195);
     strokeWeight(3);
@@ -74,8 +74,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   // Loop to draw the 3 far left birds
   for (let i = 0; i < 3; i++) {
-    let birdXMove = map (drum, 0, 100, 0, 30);
-    let birdYMove = map (drum, 0, 100, 20, 50);
+    let birdXMove = map (other, 0, 100, 0, -20);
+    let birdYMove = map (other, 0, 100, 20, 25);
     let xPos = birdXMove + i * 80; 
     let yPos = birdYMove+40 + i * 10;
     bird(xPos, yPos);
@@ -99,8 +99,8 @@ function bird (birdX, birdY) {
 
   // Loop to draw the 3 far right birds
   for (let i = 0; i < 3; i++) {
-    let birdXMove = map (drum, 0, 100, 0, -30);
-    let birdYMove = map (drum, 0, 100, 20, 50);
+    let birdXMove = map (other, 0, 100, 0, 30);
+    let birdYMove = map (other, 0, 100, 20, 50);
     let xPos = birdXMove+250 + i * 80; 
     let yPos = birdYMove+60 + i * -10;
     bird(xPos, yPos);
@@ -127,8 +127,8 @@ function bird (birdX, birdY) {
     let HeartUpDown = initialY + amplitude * Math.cos(heartTime * frequency);
     strokeWeight(1);
     stroke(0);
-    fill (255,82,82);
-  let HeartSize = map (vocal, 0, 100, 0, 20);
+    fill 	(131,0,196);
+  let HeartSize = map (vocal, 0, 100, 0, 15);
 
   //heart lobes
   //left
@@ -176,8 +176,8 @@ function bird (birdX, birdY) {
     //ai made  
     let HeartUpDown = initialY + amplitude * Math.cos(heartTime * frequency);
     
-    fill 	(199,0,0);
-  let HeartSize = map (bass, 0, 100, 0, 15);
+    fill 	(76,0,164);
+  let HeartSize = map (vocal, 0, 100, 0, 15);
 
 // left lobe
 ellipse(207, 265 + HeartUpDown, 45 + HeartSize, 47 + HeartSize);
